@@ -9,10 +9,11 @@ import java.util.logging.Logger;
 public class DBConnection {
 
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_NAME = "testing";
-    static final String DB_URL = "jdbc:mysql://localhost/" + DB_NAME + "?serverTimezone=UTC";
-    static final String USER = "root";
-    static final String PASS = "";
+    static final String DB_NAME = "db";
+    static final String USER = "user";
+    static final String PASS = "password";
+    static final String HOST = "localhost";
+    static final String DB_URL = "jdbc:mysql://" + HOST + "/" + DB_NAME + "?serverTimezone=UTC";
 
     static Connection conn;
 

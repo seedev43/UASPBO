@@ -1,5 +1,6 @@
 package main.controller;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,29 +35,27 @@ public class TabelKaryawan {
     }
 
     public void update(Karyawan kr) {
-        int indeks = -1;
-        for (int i = 0; i < getBanyakKaryawan(); i++) {
-            if (this.kr.get(i).getId() == kr.getId()) {
-                indeks = i;
-                break;
-            }
-        }
-        if (indeks >= 0) {
-            this.kr.set(indeks, kr);
-        }
+
     }
 
     public void delete(Karyawan kr) {
-        this.kr.remove(kr);
+
     }
 
     public boolean isExist(int id) {
         try {
             String sql = "SELECT * FROM karyawan WHERE id = ?";
-            PreparedStatement stat = DBConnection.getConnection().prepareStatement(sql);
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stat = conn.prepareStatement(sql);
             stat.setInt(1, id);
             ResultSet res = stat.executeQuery();
-            return res.next() && res.getInt(1) > 0;
+            boolean isExist = res.next() && res.getInt(1) > 0;
+
+            res.close();
+            stat.close();
+            conn.close();
+
+            return isExist;
 
         } catch (SQLException e) {
             Logger.getLogger(TabelKaryawan.class.getName()).log(Level.SEVERE, null, e);
@@ -66,21 +65,35 @@ public class TabelKaryawan {
     }
 
     public Karyawan getKaryawan(int id) {
-        int indeks = -1;
-        for (int i = 0; i < getBanyakKaryawan(); i++) {
-            if (kr.get(i).getId() == id) {
-                indeks = i;
-                break;
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stat = conn.prepareStatement("SELECT * FROM karyawan WHERE id = ?");
+            stat.setInt(1, id);
+            ResultSet res = stat.executeQuery();
+
+            if (!res.next()) {
+                return null;
             }
+
+            Karyawan kr = new Karyawan(id, res.getString("nama"));
+
+            res.close();
+            stat.close();
+            conn.close();
+
+            return kr;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TabelKaryawan.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        return (indeks >= 0) ? kr.get(indeks) : null;
     }
 
-    public int getBanyakKaryawan() {
-        return kr.size();
-    }
-
-    public ArrayList<Karyawan> getSemuaKaryawan() {
-        return kr;
-    }
+//    public int getBanyakKaryawan() {
+//        return kr.size();
+//    }
+//
+//    public ArrayList<Karyawan> getSemuaKaryawan() {
+//        return kr;
+//    }
 }
