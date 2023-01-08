@@ -1,7 +1,9 @@
 package main;
 
 import main.view.PanelHistoryPelanggan;
+import main.view.PanelPelanggan;
 import main.view.PanelRekapPengadaan;
+import main.view.Pelanggan_UI;
 
 public class UI_Utama extends javax.swing.JFrame {
 
@@ -42,6 +44,11 @@ public class UI_Utama extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Pelanggan");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Karyawan");
@@ -81,6 +88,10 @@ public class UI_Utama extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         src.setViewportView(new PanelRekapPengadaan());
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        src.setViewportView(new PanelPelanggan());
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

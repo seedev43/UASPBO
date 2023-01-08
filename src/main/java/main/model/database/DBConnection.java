@@ -13,7 +13,7 @@ public class DBConnection {
     static final String USER = "user";
     static final String PASS = "password";
     static final String DB_NAME = "PboDB";
-    static final String DB_URL = "jdbc:mysql://" + HOST + "/" + DB_NAME + "?serverTimezone=UTC";
+    static final String DB_URL = "jdbc:mysql://" + HOST + "/" + DB_NAME + "?useSSL=false";
 
     static Connection conn;
 

@@ -48,20 +48,20 @@ public class PanelRekapPengadaan extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Kode Barang", "Harga Masuk", "Harga Jual", "Jumlah Barang", "Stok", "Waktu"
+                "ID", "Kode Barang", "Brand", "Tipe", "Warna", "Harga Masuk", "Harga Jual", "Jumlah Barang", "Stok", "Waktu"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -83,10 +83,10 @@ public class PanelRekapPengadaan extends javax.swing.JPanel {
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(60);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(60);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(130);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(60);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(60);
+            jTable1.getColumnModel().getColumn(8).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(9).setPreferredWidth(130);
         }
 
         jLabel1.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
@@ -99,18 +99,19 @@ public class PanelRekapPengadaan extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel1)
+                        .addGap(0, 77, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel1)
-                .addGap(59, 59, 59)
+                .addGap(74, 74, 74)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -161,11 +162,14 @@ public class PanelRekapPengadaan extends javax.swing.JPanel {
             dataModel = (DefaultTableModel) jTable1.getModel();
             dataModel.setRowCount(0);
 
-            String sql = "SELECT * FROM pengadaan_barang";
+            String sql = "SELECT pb.id, pb.barang_id, b.brand, b.type_and_variant, b.color, pb.price_in, pb.total_price, pb.quantity_in, pb.stock, pb.time_in "
+                    + "FROM pengadaan_barang pb "
+                    + "INNER JOIN barang b "
+                    + "ON pb.barang_id = b.id";
             PreparedStatement stat = DBConnection.getConnection().prepareStatement(sql);
             ResultSet res = stat.executeQuery();
             while (res.next()) {
-                dataModel.addRow(new Object[]{res.getInt("id"), res.getString("barang_id"), res.getString("price_in"), res.getString("total_price"), res.getString("quantity_in"), res.getString("stock"), res.getString("time_in")});
+                dataModel.addRow(new Object[]{res.getInt("id"), res.getString("barang_id"), res.getString("brand"), res.getString("type_and_variant"), res.getString("color"), res.getString("price_in"), res.getString("total_price"), res.getString("quantity_in"), res.getString("stock"), res.getString("time_in")});
 
             }
             res.close();
