@@ -1,6 +1,6 @@
 package main;
 
-import main.view.PanelHistory;
+import main.view.PanelHistoryPelanggan;
 import main.view.PanelRekapPengadaan;
 
 public class UI_Utama extends javax.swing.JFrame {
@@ -75,7 +75,7 @@ public class UI_Utama extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        src.setViewportView(new PanelHistory());
+        src.setViewportView(new PanelHistoryPelanggan());
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed

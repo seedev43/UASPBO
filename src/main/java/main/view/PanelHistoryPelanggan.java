@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.model.database.DBConnection;
 
-public class PanelHistory extends javax.swing.JPanel {
+public class PanelHistoryPelanggan extends javax.swing.JPanel {
 
     /**
      * Creates new form panelKaryawan
@@ -17,7 +17,7 @@ public class PanelHistory extends javax.swing.JPanel {
     DefaultTableModel dataModel;
     public String id = "";
 
-    public PanelHistory() {
+    public PanelHistoryPelanggan() {
         initComponents();
 
         updateTable(id);
@@ -179,7 +179,7 @@ public class PanelHistory extends javax.swing.JPanel {
             }
 //            res.close();
         } catch (SQLException ex) {
-            Logger.getLogger(PanelHistory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PanelHistoryPelanggan.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

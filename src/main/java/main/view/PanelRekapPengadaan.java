@@ -85,7 +85,7 @@ public class PanelRekapPengadaan extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(70);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(60);
             jTable1.getColumnModel().getColumn(3).setPreferredWidth(60);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
             jTable1.getColumnModel().getColumn(6).setPreferredWidth(130);
         }
 
