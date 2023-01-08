@@ -10,8 +10,8 @@ public class DBConnection {
 
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String HOST = "103.171.85.233:3306";
-    static final String USER = "strukdat";
-    static final String PASS = "Passwordegan**1234";
+    static final String USER = "user";
+    static final String PASS = "password";
     static final String DB_NAME = "PboDB";
     static final String DB_URL = "jdbc:mysql://" + HOST + "/" + DB_NAME + "?serverTimezone=UTC";
 
